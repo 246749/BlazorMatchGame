@@ -1,0 +1,67 @@
+﻿@page "/"
+<PageTitle>Index</PageTitle>
+
+<h1>حمودة ابو اللبن لالعاب الاطفال</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" /> 
+<style>
+	.container {
+		width: 400px;
+	}
+
+	button {
+		width: 100px;
+		height: 100px;
+		font-size: 50px;}
+		
+</style>
+<div class="container">
+	<div class="row">
+		@foreach (var animal in animalEmoji)
+		{
+			<div class="col-3">
+				<button type="button" class="btn btn-outline-dark">
+					<h1>@animal</h1>
+				</button>
+			</div>
+		}
+	</div>
+</div>
+<PageTitle>Index</PageTitle>
+
+<h1>حمودة ابو اللبن</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" /> 
+@code{
+		List<string> animalEmoji = new List<string>()
+	{
+		"🐶","🐶",
+		"🐹","🐹",
+		"🐁","🐁",
+		"🦊","🦊",
+		"🐺","🐺",
+		"🦌","🦌",
+		"🦄","🦄",
+		"🐲","🐲",
+
+	};
+		List<string> shuffledAnimals = new List<string>();
+
+		protected override void OnInitialized()
+	{
+			SetUpGame();
+	}
+		private void SetUpGame()
+	{
+			Random random = new Random();
+			shuffledAnimals = animalEmoji
+			.OrderBy(item => random.Next())
+			.ToList();
+	}
+
+
+}
